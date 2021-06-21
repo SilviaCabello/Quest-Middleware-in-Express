@@ -1,13 +1,16 @@
 const express = require("express");
 const app = express();
+const port = 3000;
 
 app.use(logger)
 
 app.get("/", (req, res) => {
+  console.log("Home")
   res.send("Home Page");
 });
 
 app.get("/users", auth, (req, res) => {
+  console.log("Users")
   res.send("Users Page");
 });
 
@@ -24,4 +27,6 @@ function auth(req, res, next) {
   }
 }
 
-app.listen(3000);
+app.listen(port, (error) => {
+  error ? console.log(error) : console.log (`App running on port ${port}`);
+});
